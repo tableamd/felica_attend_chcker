@@ -8,6 +8,10 @@ extern "C" {
 #define STEW_URL "stewgate-u.appspot.com" //stewgateのドメイン名
 #define STEW_TOKEN "TOKEN"
 
+float discomfort(float temp, float humid){
+  return 0.81*temp+0.01*humid*(0.99*temp-14.3)+46.3;
+}
+
 //int sendData(float temp, float humid, int blight){
 //  int count = 0;
 //  String sentence = "";
@@ -118,6 +122,7 @@ void loop() {
   //-------------------ここからデータ送信開始----------------------
   int counter = 0;
   int f = 0;
+  float discomf = discomfort(t, h);
   String sentence = "";
   sentence += "【委員会室の温度・湿度】\n";
   sentence += "温度: ";
@@ -125,7 +130,10 @@ void loop() {
   sentence += "度\n";
   sentence += "湿度: ";
   sentence += String(h);
-  sentence += "％\n\n";
+  sentence += "％\n";
+  sentence += "不快指数: ";
+  sentence += String(discomf);
+  sentence += "\n\n";
   if(blight > 500)
     sentence += "現在, 委員会室に人が居ます。\n";
   else

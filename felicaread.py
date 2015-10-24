@@ -7,6 +7,7 @@ from requests import put, get
 import json
  
 l = ["gakuseki","name"]
+user_time = {}
 API_PASS = "API_PASSWORD"
 URL = "attendchecker_URL"
  

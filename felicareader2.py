@@ -84,6 +84,7 @@ while 1:
                 res = put(URL+"p",data={"key":API_PASS,"gakuseki":user_time[n][1],"name":n}).json()
             except:
                 print u"データ送信に失敗しました。ネットワークの接続等を確認してください。"
+                time.sleep(5)
                 break
 
             if res == "success":

@@ -83,7 +83,8 @@ while 1:
             try:
                 res = put(URL+"p",data={"key":API_PASS,"gakuseki":user_time[n][1],"name":n}).json()
             except:
-                print u"もう一度トライしてください。"
+                print u"データ送信に失敗しました。ネットワークの接続等を確認してください。"
+                break
 
             if res == "success":
                 print u"%sさんが出席しました。"%(n)

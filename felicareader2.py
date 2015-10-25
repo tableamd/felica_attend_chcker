@@ -50,6 +50,7 @@ def post_user_data():
     if user["attend"] == 1: #退出はすぐ行う
         put(URL+"p",data={"key":API_PASS,"gakuseki":gakuseki,"name":name}).json()
         print u"退出が完了しました。"
+        del user_time[name]
         return 1
 
     if not user_time.has_key(name): #タッチ完了後から30秒の計測を開始する
@@ -76,7 +77,7 @@ f.felica_read_without_encryption02.restype = c_int
 while 1:
 
     for n in user_time.keys():
-        if user_time[n][0] >= 60: #タッチ完了後30秒立った人は出席
+        if user_time[n][0] >= 60: #タッチ完了後30秒経った人は出席
             print "%s%s_%s_%s"%(URL,API_PASS,gakuseki,name)
 
             try:
